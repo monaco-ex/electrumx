@@ -40,7 +40,7 @@ import lib.util as util
 from lib.hash import Base58, hash160, double_sha256, hash_to_str
 from lib.script import ScriptPubKey
 from lib.tx import Deserializer, DeserializerSegWit, DeserializerAuxPow, \
-    DeserializerZcash, DeserializerTxTime, DeserializerReddcoin
+    DeserializerZcash, DeserializerTxTime, DeserializerReddcoin, DeserializerMonacoin
 from server.block_processor import BlockProcessor
 from server.daemon import Daemon, DashDaemon, LegacyRPCDaemon
 from server.session import ElectrumX, DashElectrumX
@@ -350,11 +350,6 @@ class Bitcoin(Coin):
         'ELEX01.blackpole.online s t',
         'electrum_abc.criptolayer.net s50012',
     ]
-
-
-class BitcoinSegwit(Bitcoin):
-    NET = "bitcoin-segwit"
-    DESERIALIZER = DeserializerSegWit
 
 
 class BitcoinTestnet(Bitcoin):
@@ -687,19 +682,19 @@ class FairCoin(Coin):
     P2PKH_VERBYTE = bytes.fromhex("5f")
     P2SH_VERBYTES = [bytes.fromhex("24")]
     WIF_BYTE = bytes.fromhex("df")
-    GENESIS_HASH = ('beed44fa5e96150d95d56ebd5d262578'
-                    '1825a9407a5215dd7eda723373a0a1d7')
+    GENESIS_HASH = ('1f701f2b8de1339dc0ec908f3fb6e9b0'
+                    'b870b6f20ba893e120427e42bbc048d7')
     BASIC_HEADER_SIZE = 108
-    TX_COUNT = 505
-    TX_COUNT_HEIGHT = 470
+    TX_COUNT = 1000
+    TX_COUNT_HEIGHT = 1000
     TX_PER_BLOCK = 1
     IRC_PREFIX = "E_"
     IRC_CHANNEL = "#fairlectrum"
     RPC_PORT = 40405
     PEER_DEFAULT_PORTS = {'t': '51811', 's': '51812'}
     PEERS = [
-        'electrum.faircoin.world s',
-        'electrumfair.punto0.org s',
+        'fairlectrum.fair-coin.net s',
+        'fairlectrum.fair.to s',
     ]
 
     @classmethod
@@ -858,40 +853,22 @@ class Reddcoin(Coin):
     IRC_CHANNEL = "#electrum-rdd"
     RPC_PORT = 45443
 
-
-class Vertcoin(Coin):
-    NAME = "Vertcoin"
-    SHORTNAME = "VTC"
-    NET = "mainnet"
-    XPUB_VERBYTES = bytes.fromhex("0488B21E")
-    XPRV_VERBYTES = bytes.fromhex("0488ADE4")
-    P2PKH_VERBYTE = bytes.fromhex("47")
-    P2SH_VERBYTES = [bytes.fromhex("05")]
-    WIF_BYTE = bytes.fromhex("80")
-    GENESIS_HASH = ('4d96a915f49d40b1e5c2844d1ee2dccb'
-                    '90013a990ccea12c492d22110489f0c4')
-    DESERIALIZER = DeserializerSegWit
-    TX_COUNT = 2383423
-    TX_COUNT_HEIGHT = 759076
-    TX_PER_BLOCK = 3
-    RPC_PORT = 5888
-    REORG_LIMIT = 1000
     
-
 class Monacoin(Coin):
     NAME = "Monacoin"
     SHORTNAME = "MONA"
     NET = "mainnet"
     XPUB_VERBYTES = bytes.fromhex("0488b21e")
     XPRV_VERBYTES = bytes.fromhex("0488ade4")
-    P2PKH_VERBYTE = bytes.fromhex("32")
-    P2SH_VERBYTES = [bytes.fromhex("37"), bytes.fromhex("05")]
+    P2PKH_VERBYTE = bytes.fromhex("37")
+    P2SH_VERBYTES = [bytes.fromhex("05")]
     WIF_BYTE = bytes.fromhex("B2")
     GENESIS_HASH = ('ff9f1c0116d19de7c9963845e129f9ed'
                     '1bfc0b376eb54fd7afa42e0d418c8bb6')
-    DESERIALIZER = DeserializerSegWit
+    DESERIALIZER = DeserializerMonacoin
     TX_COUNT = 2568580
     TX_COUNT_HEIGHT = 1029766
-    TX_PER_BLOCK = 2
+    TX_PER_BLOCK = 1
+    IRC_PREFIX = "E_"
+    IRC_CHANNEL = "#electrum-mona"
     RPC_PORT = 9402
-    REORG_LIMIT = 1000
