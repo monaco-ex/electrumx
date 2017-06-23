@@ -40,7 +40,7 @@ import lib.util as util
 from lib.hash import Base58, hash160, double_sha256, hash_to_str
 from lib.script import ScriptPubKey
 from lib.tx import Deserializer, DeserializerSegWit, DeserializerAuxPow, \
-    DeserializerZcash, DeserializerTxTime, DeserializerReddcoin
+    DeserializerZcash, DeserializerTxTime, DeserializerReddcoin, DeserializerMonacoin
 from server.block_processor import BlockProcessor
 from server.daemon import Daemon, LegacyRPCDaemon
 from server.session import ElectrumX
@@ -880,3 +880,23 @@ class Reddcoin(Coin):
     IRC_PREFIX = "E_"
     IRC_CHANNEL = "#electrum-rdd"
     RPC_PORT = 45443
+
+    
+class Monacoin(Coin):
+    NAME = "Monacoin"
+    SHORTNAME = "MONA"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("0488b21e")
+    XPRV_VERBYTES = bytes.fromhex("0488ade4")
+    P2PKH_VERBYTE = bytes.fromhex("37")
+    P2SH_VERBYTES = [bytes.fromhex("05")]
+    WIF_BYTE = bytes.fromhex("B2")
+    GENESIS_HASH = ('ff9f1c0116d19de7c9963845e129f9ed'
+                    '1bfc0b376eb54fd7afa42e0d418c8bb6')
+    DESERIALIZER = DeserializerMonacoin
+    TX_COUNT = 2568580
+    TX_COUNT_HEIGHT = 1029766
+    TX_PER_BLOCK = 1
+    IRC_PREFIX = "E_"
+    IRC_CHANNEL = "#electrum-mona"
+    RPC_PORT = 9402
