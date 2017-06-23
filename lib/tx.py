@@ -333,3 +333,48 @@ class DeserializerReddcoin(Deserializer):
             outputs,
             locktime,
         ), double_sha256(self.binary[start:self.cursor])
+
+
+class DeserializerMonacoin(Deserializer):
+
+    # https://bitcoincore.org/en/segwit_wallet_dev/#transaction-serialization
+
+    def _read_witness(self, fields):
+        read_witness_field = self._read_witness_field
+        return [read_witness_field() for i in range(fields)]
+
+    def _read_witness_field(self):
+        read_varbytes = self._read_varbytes
+        return [read_varbytes() for i in range(self._read_varint())]
+
+    def read_tx(self):
+        '''Return a (Deserialized TX, TX_HASH) pair.
+
+        The hash needs to be reversed for human display; for efficiency
+        we process it in the natural serialized order.
+        '''
+        marker = self.binary[self.cursor + 4]
+        if marker:
+            return super().read_tx()
+
+        # Ugh, this is nasty.
+        start = self.cursor
+        version = self._read_le_int32()
+        orig_ser = self.binary[start:self.cursor]
+
+        marker = self._read_byte()
+        flag = self._read_byte()
+
+        start = self.cursor
+        inputs = self._read_inputs()
+        outputs = self._read_outputs()
+        orig_ser += self.binary[start:self.cursor]
+
+        witness = self._read_witness(len(inputs))
+
+        start = self.cursor
+        locktime = self._read_le_uint32()
+        orig_ser += self.binary[start:self.cursor]
+
+        return TxSegWit(version, marker, flag, inputs,
+                        outputs, witness, locktime), double_sha256(orig_ser)
