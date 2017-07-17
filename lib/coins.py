@@ -886,8 +886,8 @@ class Monacoin(Coin):
     NAME = "Monacoin"
     SHORTNAME = "MONA"
     NET = "mainnet"
-    XPUB_VERBYTES = bytes.fromhex("019da462")
-    XPRV_VERBYTES = bytes.fromhex("019d9cfe")
+    XPUB_VERBYTES = bytes.fromhex("0488b21e")
+    XPRV_VERBYTES = bytes.fromhex("0488ade4")
     P2PKH_VERBYTE = bytes.fromhex("32")
     P2SH_VERBYTES = [bytes.fromhex("05")]
     WIF_BYTE = bytes.fromhex("B2")
