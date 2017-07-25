@@ -16,7 +16,7 @@ setuptools.setup(
     author='Neil Booth',
     author_email='kyuupichan@gmail.com',
     license='MIT Licence',
-    url='https://github.com/kyuupichan/electrumx/',
+    url='https://github.com/wakiyamap/electrumx/',
     long_description='Server implementation for the Electrum wallet',
     classifiers=[
         'Development Status :: 3 - Alpha',

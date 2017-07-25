@@ -3,7 +3,7 @@ Prerequisites
 =============
 
 **ElectrumX** should run on any flavour of unix.  I have run it
-successfully on MaxOSX and DragonFlyBSD.  It won't run out-of-the-box
+successfully on MacOS and DragonFlyBSD.  It won't run out-of-the-box
 on Windows, but the changes required to make it do so should be
 small - pull requests are welcome.
 
@@ -403,6 +403,6 @@ copy of your certificate and key in case you need to restore them.
 .. _`pylru`: https://pypi.python.org/pypi/pylru
 .. _`IRC`: https://pypi.python.org/pypi/irc
 .. _`x11_hash`: https://pypi.python.org/pypi/x11_hash
-.. _`contrib/python3.6/python-3.6.sh`: https://github.com/kyuupichan/electrumx/blob/master/contrib/contrib/python3.6/python-3.6.sh
-.. _`contrib/raspberrypi3/install_electrumx.sh`: https://github.com/kyuupichan/electrumx/blob/master/contrib/contrib/raspberrypi3/install_electrumx.sh
-.. _`contrib/raspberrypi3/run_electrumx.sh`: https://github.com/kyuupichan/electrumx/blob/master/contrib/contrib/raspberrypi3/run_electrumx.sh
+.. _`contrib/python3.6/python-3.6.sh`: https://github.com/kyuupichan/electrumx/blob/master/contrib/python3.6/python-3.6.sh
+.. _`contrib/raspberrypi3/install_electrumx.sh`: https://github.com/kyuupichan/electrumx/blob/master/contrib/raspberrypi3/install_electrumx.sh
+.. _`contrib/raspberrypi3/run_electrumx.sh`: https://github.com/kyuupichan/electrumx/blob/master/contrib/raspberrypi3/run_electrumx.sh
